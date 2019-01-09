@@ -96,7 +96,7 @@ function makeList(n) {
 // Selection sort
 (function mySelectionAlgorithm() {
   const list = makeList(10);
-  debugger;
+
   function swap(array, swap, swapWith) {
     let temp;
     temp = array[swap];
@@ -130,7 +130,23 @@ function makeList(n) {
   console.log(selectionSort(list)); // [1, 2, 2, 3, 3, 3, 5, 6, 7]
 })();
 
-// // Insertion sort
-// function myInsertAlgorithm() {
+// Insertion sort
+(function insertionAlgorithm(array) {
+  const list = makeList(10);
+  function insertionSort(array) {
+    for (let i = 1; i < array.length; i++) {
+      let j;
+      temp = array[i];
+      for (j = i - 1; j >= 0 && array[j] > temp; j--) {
+        array[j + 1] = array[j];
+      }
+      array[j + 1] = temp;
+    }
+    return array;
+  }
 
-// }
+  console.log(`Insertion algorithm:`);
+  console.log(insertionSort(list));
+})();
+
+
