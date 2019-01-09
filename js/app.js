@@ -18,40 +18,61 @@ function makeList(n) {
 
 (function myQuickAlgorithm() {
   const list = makeList(10);
-  const pivot = list.pop();
 
-  function swap(array, i, j) {
-    var temp = array[i];
-    array[i] = array[j];
-    array[j] = temp;
-  }
-  
-  // the Hoare partition
-  function quickSort(array, left, right) {
-    pivot = Math.floor((left + right) / 2);
+  function quickSort(array) {
+    let popped = array.pop();
+    let left = [ ];
+    let right = [ ];
 
-    while (left < right) {
-      while(array[left] < array[pivot]) {
-        left++;
-      }
-      while(array[right] > array[pivot]) {
-        right--;
+    if (array.length === 0) {
+      return array;
+    }
+
+    for (let i = 0; i < array.length; i++) {
+      if (array[i] < popped) {
+        left.push(array[i]);
+      } else {
+        right.push(array[i]);
       }
     }
 
-    if (left < right) {
-      swap(array, left, right);
-      left++;
-      right--;
-    }
-
-    return left;
+    left = quickSort(left);
+    right = quickSort(right);
+    console.log([].concat(left, popped, right));
+    return [].concat(left, popped, right);
   }
   
   console.log(`Quick sort:`);
-  console.log(quickSort(array.slice())); // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
+  console.log(quickSort(list));
 })();
+
+  // function swap(array, i, j) {
+  //   var temp = array[i];
+  //   array[i] = array[j];
+  //   array[j] = temp;
+  // }
+  
+  // // the Hoare partition
+  // function quickSort(array, left, right) {
+  //   pivot = Math.floor((left + right) / 2);
+
+  //   while (left < right) {
+  //     while(array[left] < array[pivot]) {
+  //       left++;
+  //     }
+  //     while(array[right] > array[pivot]) {
+  //       right--;
+  //     }
+  //   }
+
+  //   if (left < right) {
+  //     swap(array, left, right);
+  //     left++;
+  //     right--;
+  //   }
+
+  //   return left;
+  // }
 
 /*  Merge sort...
  *  breaks down an array into smaller arrays with a length of 1.
@@ -62,6 +83,7 @@ function makeList(n) {
 
 (function myMergeAlgorithm() {
   const list = makeList(10);
+
   function mergeSort(array) {
     if (array.length === 1) {
       return array;
