@@ -10,10 +10,48 @@ function makeList(n) {
   return list;
 }
 
-// Quick sort
-function myQuickAlgorithm() {
+/*  Quick sort...
+ *  You must pick a pivot. This is usually the last element in the given array.
+ *  All items smaller than the pivot will be in the left array, and the items greater than the pivot will be placed in the right array.
+ *  Repeat this step for both the left and the right side of the pivot (pick a pivot, smaller = left; bigger = right)
+ */
+
+(function myQuickAlgorithm() {
+  const list = makeList(10);
+  const pivot = list.pop();
+
+  function swap(array, i, j) {
+    var temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
   
-}
+  // the Hoare partition
+  function quickSort(array, left, right) {
+    pivot = Math.floor((left + right) / 2);
+
+    while (left < right) {
+      while(array[left] < array[pivot]) {
+        left++;
+      }
+      while(array[right] > array[pivot]) {
+        right--;
+      }
+    }
+
+    if (left < right) {
+      swap(array, left, right);
+      left++;
+      right--;
+    }
+
+    return left;
+  }
+  
+  console.log(`Quick sort:`);
+  console.log(quickSort(array.slice())); // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+})();
 
 /*  Merge sort...
  *  breaks down an array into smaller arrays with a length of 1.
@@ -21,6 +59,7 @@ function myQuickAlgorithm() {
  *  the lesser number is pushed into result and the greater number is saved for the next comparison.
  *  this is done until the array is fully reconstructed in numerical order.
  */
+
 (function myMergeAlgorithm() {
   const list = makeList(10);
   function mergeSort(array) {
