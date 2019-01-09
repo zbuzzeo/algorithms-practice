@@ -96,6 +96,13 @@ function makeList(n) {
 // Selection sort
 (function mySelectionAlgorithm() {
   const list = makeList(10);
+  debugger;
+  function swap(array, swap, swapWith) {
+    let temp;
+    temp = array[swap];
+    array[swap] = array[swapWith];
+    array[swapWith] = temp;
+  }
 
   function selectionSort(array) {
     for (let i = 0; i < array.length - 1; i++) {
@@ -108,6 +115,8 @@ function makeList(n) {
       }
 
       if (minIndex !== i) {
+        // this code is identical. why doesn't it work?
+        // swap(array, array[i], array[minIndex]);
         temp = array[i];
         array[i] = array[minIndex];
         array[minIndex] = temp;
