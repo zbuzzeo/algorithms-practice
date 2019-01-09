@@ -20,7 +20,7 @@ function makeList(n) {
   const list = makeList(10);
 
   function quickSort(array) {
-    let popped = array.pop();
+    let popped = array.pop();   // comparison value to every other item in the array
     let left = [ ];
     let right = [ ];
 
@@ -29,50 +29,22 @@ function makeList(n) {
     }
 
     for (let i = 0; i < array.length; i++) {
-      if (array[i] < popped) {
+      if (array[i] < popped) {  // if lower than comparison value then push left
         left.push(array[i]);
       } else {
-        right.push(array[i]);
+        right.push(array[i]);   // if higher than comparison value then push right
       }
     }
-
+    // update the halves and send them in as the new array when the function is called again.
     left = quickSort(left);
     right = quickSort(right);
     console.log([].concat(left, popped, right));
     return [].concat(left, popped, right);
   }
   
-  console.log(`Quick sort:`);
-  console.log(quickSort(list));
+  // console.log(`Quick sort:`);
+  // console.log(quickSort(list));
 })();
-
-  // function swap(array, i, j) {
-  //   var temp = array[i];
-  //   array[i] = array[j];
-  //   array[j] = temp;
-  // }
-  
-  // // the Hoare partition
-  // function quickSort(array, left, right) {
-  //   pivot = Math.floor((left + right) / 2);
-
-  //   while (left < right) {
-  //     while(array[left] < array[pivot]) {
-  //       left++;
-  //     }
-  //     while(array[right] > array[pivot]) {
-  //       right--;
-  //     }
-  //   }
-
-  //   if (left < right) {
-  //     swap(array, left, right);
-  //     left++;
-  //     right--;
-  //   }
-
-  //   return left;
-  // }
 
 /*  Merge sort...
  *  breaks down an array into smaller arrays with a length of 1.
@@ -117,16 +89,39 @@ function makeList(n) {
     return result.concat(left.slice(indexLeft), right.slice(indexRight));
   }
 
-  console.log(`Merge sort:`);
-  console.log(mergeSort(list)); // [1, 2, 2, 3, 3, 3, 5, 6, 7]
+  // console.log(`Merge sort:`);
+  // console.log(mergeSort(list)); // [1, 2, 2, 3, 3, 3, 5, 6, 7]
 })();
 
 // Selection sort
-function mySelectionAlgorithm() {
+(function mySelectionAlgorithm() {
+  const list = makeList(10);
 
-}
+  function selectionSort(array) {
+    for (let i = 0; i < array.length - 1; i++) {
+      let minIndex = i; // like the pivot in quick sort, this is your comparison value
+      
+      for (let j = i + 1; j < array.length; j++) {
+        if (array[j] < array[minIndex]) {
+          minIndex = j; // j will always be 1 more than minIndex.
+        }
+      }
 
-// Insertion sort
-function myInsertAlgorithm() {
+      if (minIndex !== i) {
+        temp = array[i];
+        array[i] = array[minIndex];
+        array[minIndex] = temp;
+      }
+    }
 
-}
+    return array;
+  }
+
+  console.log(`Selection sort:`);
+  console.log(selectionSort(list)); // [1, 2, 2, 3, 3, 3, 5, 6, 7]
+})();
+
+// // Insertion sort
+// function myInsertAlgorithm() {
+
+// }
