@@ -19,6 +19,7 @@ function makeList(n) {
 (function myQuickAlgorithm() {
   const list = makeList(10);
 
+  // quickSort not accepting duplicate numbers...
   function quickSort(array) {
     let popped = array.pop();   // comparison value to every other item in the array
     let left = [ ];
@@ -38,12 +39,11 @@ function makeList(n) {
     // update the halves and send them in as the new array when the function is called again.
     left = quickSort(left);
     right = quickSort(right);
-    console.log([].concat(left, popped, right));
     return [].concat(left, popped, right);
   }
   
-  // console.log(`Quick sort:`);
-  // console.log(quickSort(list));
+  console.log(`Quick sort:`);
+  console.log(quickSort(list));
 })();
 
 /*  Merge sort...
@@ -89,8 +89,8 @@ function makeList(n) {
     return result.concat(left.slice(indexLeft), right.slice(indexRight));
   }
 
-  // console.log(`Merge sort:`);
-  // console.log(mergeSort(list)); // [1, 2, 2, 3, 3, 3, 5, 6, 7]
+  console.log(`Merge sort:`);
+  console.log(mergeSort(list));
 })();
 
 // Selection sort
@@ -133,10 +133,12 @@ function makeList(n) {
 // Insertion sort
 (function insertionAlgorithm(array) {
   const list = makeList(10);
+
   function insertionSort(array) {
     for (let i = 1; i < array.length; i++) {
-      let j;
+      let j; // need to define j before the inner loop, otherwise line 146 breaks because the variable j is not being hoisted up.
       temp = array[i];
+
       for (j = i - 1; j >= 0 && array[j] > temp; j--) {
         array[j + 1] = array[j];
       }
@@ -145,7 +147,7 @@ function makeList(n) {
     return array;
   }
 
-  console.log(`Insertion algorithm:`);
+  console.log(`Insertion sort:`);
   console.log(insertionSort(list));
 })();
 
