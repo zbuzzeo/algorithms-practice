@@ -17,7 +17,7 @@ function makeList(population) {
  * will be placed in a right array.
  * 
  * @param {Array} array the unsorted array passed into the function.
- * @return {Array} sorted returns the array with numbers in their respective places.
+ * @return {Array} sorted: returns the array with numbers in their respective places.
  */
 
 function quickSort(array) {
@@ -52,7 +52,7 @@ console.log(quickSort(makeList(10)));
  * on their number values.
  * 
  * @param {Array} array
- * @return {Array} result: returns a new array with numbers sorted.
+ * @return {Array} sorted: returns a new array with numbers sorted.
  */
 
 function mergeSort(array) {
@@ -72,29 +72,29 @@ function mergeSort(array) {
 
 /**
  * Compares one number from the left and right arrays at a time. The lesser value is placed in
- * result.
+ * sorted.
  * 
  * @param {Array} left
  * @param {Array} right
- * @return {Array} result: returns a new array with numbers sorted.
+ * @return {Array} sorted: returns a new array with numbers sorted.
  */
 
 function merge(left, right) {
-  let result = [ ];
+  let sorted = [ ];
   let indexLeft = 0;
   let indexRight = 0;
   
   while (indexLeft < left.length && indexRight < right.length) {
     if (left[indexLeft] < right[indexRight]) {
-      result.push(left[indexLeft]);
+      sorted.push(left[indexLeft]);
       indexLeft++;
     } else {
-      result.push(right[indexRight]);
+      sorted.push(right[indexRight]);
       indexRight++;
     }
   }
 
-  return result.concat(left.slice(indexLeft), right.slice(indexRight));
+  return sorted.concat(left.slice(indexLeft), right.slice(indexRight));
 }
 
 console.log(`%cMergesort:`, `color: orange; font-size: 1.6em; font-weight: bold`);
